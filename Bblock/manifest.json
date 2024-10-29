@@ -1,0 +1,40 @@
+{
+    "manifest_version": 3,
+    "name": "URL Blocker",
+    "version": "1.0",
+    "permissions": [
+      "declarativeNetRequest",
+      "declarativeNetRequestWithHostAccess",
+      "storage",
+      "activeTab",
+      "webRequest"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html",
+       "default_icon": "icons/caterpillar.png"
+    },
+    "host_permissions": [
+            "<all_urls>"
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": ["blocked.html"],
+        "matches": ["<all_urls>"]
+      }
+    ],
+    "icons": {
+    "16": "icons/caterpillar.png",
+    "48": "icons/caterpillar.png",
+    "128": "icons/caterpillar.png"
+  }
+  }
+  
