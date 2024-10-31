@@ -1,0 +1,145 @@
+{
+  "blocked": [
+    "reproducible-builds.org",
+    "chatgpt.com",
+    "github.com",
+    "code.earthengine.google.com",
+    "diver.google.com",
+    "google.com",
+    "*.google.com",
+    "arcgis.com",
+    "*.esri.com",
+    "strongvpn.com",
+    "*.strongvpn.com",
+    "kimi.com",
+    "*.mozilla.org",
+    "*.oaiusercontent.com",
+    "*.amap.com",
+    "yuque.com",
+    "eastmoney.com",
+    "kitco.com",
+    "alipay.com",
+    "alipayobjects.com"
+  ],
+  "close": 0,
+  "contextmenu-frame": true,
+  "contextmenu-pause": true,
+  "contextmenu-resume": true,
+  "contextmenu-top": true,
+  "crate": 5,
+  "css": "",
+  "disable-actions-options": true,
+  "disable-actions-page": true,
+  "initialBlock": true,
+  "initialBlockCurrent": true,
+  "map": {},
+  "message": "",
+  "no-password-on-add": false,
+  "notes": {
+    "*.amap.com": {
+      "date": 1730270169145,
+      "origin": "options"
+    },
+    "*.esri.com": {
+      "date": 1730184192774,
+      "origin": "options"
+    },
+    "*.google.com": {
+      "date": 1730184001085,
+      "origin": "options"
+    },
+    "*.mozilla.org": {
+      "date": 1730265720368,
+      "origin": "options"
+    },
+    "*.oaiusercontent.com": {
+      "date": 1730267721830,
+      "origin": "options"
+    },
+    "*.strongvpn.com": {
+      "date": 1730185074601,
+      "origin": "options"
+    },
+    "alipay.com": {
+      "date": 1730295128439,
+      "origin": "options"
+    },
+    "alipayobjects.com": {
+      "date": 1730295328514,
+      "origin": "options"
+    },
+    "arcgis.com": {
+      "date": 1730184011098,
+      "origin": "options"
+    },
+    "chatgpt.com": {
+      "date": 1730180276391,
+      "origin": "options"
+    },
+    "code.earthengine.google.com": {
+      "date": 1730181882727,
+      "origin": "options"
+    },
+    "diver.google.com": {
+      "date": 1730181979394,
+      "origin": "options"
+    },
+    "eastmoney.com": {
+      "date": 1730293506645,
+      "origin": "options"
+    },
+    "github.com": {
+      "date": 1730181780908,
+      "origin": "options"
+    },
+    "google.com": {
+      "date": 1730184001085,
+      "origin": "options"
+    },
+    "kimi.com": {
+      "date": 1730188058252,
+      "origin": "options"
+    },
+    "kitco.com": {
+      "date": 1730294150081,
+      "origin": "options"
+    },
+    "reproducible-builds.org": {
+      "date": 1730180198216,
+      "origin": "prompt"
+    },
+    "strongvpn.com": {
+      "date": 1730185062537,
+      "origin": "options"
+    },
+    "yuque.com": {
+      "date": 1730274596531,
+      "origin": "options"
+    }
+  },
+  "notification": true,
+  "pause-periods": [
+    5,
+    10,
+    15,
+    30,
+    60,
+    360,
+    1440,
+    -1
+  ],
+  "rate": false,
+  "redirect": "",
+  "reverse": true,
+  "schedule": {
+    "times": {}
+  },
+  "schedule-offset": 0,
+  "schedules": {},
+  "sha256": "",
+  "timeout": 60,
+  "title": true,
+  "wrong": 1,
+  "managed.storage.overwrite.on.start": false,
+  "guid": "5f8adf9d-2460-4b8c-803d-bc8ea9502ec7"
+}

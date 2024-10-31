@@ -5,7 +5,14 @@ window.onload = () => {
         'chatgpt.com',
         'google.com',
         'arcgis.com',
-        'esri.com'
+        'esri.com',
+        'oaiusercontent.com',
+        'amap.com',
+        'yuque.com',
+        'kitco.com',
+        'eastmoney.com',
+        'alipay.com',
+        'alipayobjects.com'
     ];
   
     const isAllowed = allowedUrls.some(url => currentUrl.includes(url));
