@@ -12,7 +12,19 @@ window.onload = () => {
         'kitco.com',
         'eastmoney.com',
         'alipay.com',
-        'alipayobjects.com'
+        'alipayobjects.com',
+        'cnki.net',
+        'doi.org',
+        'elsevier.com',
+        'mdpi.com',
+        "ngcc.cn",
+        "nwr.gov.cn",
+        "tianditu.gov.cn",
+        "gee-community-catalog.org",
+        "wiley.com",
+        "osgeo.org",
+        "readthedocs.io",
+        "file://"
     ];
   
     const isAllowed = allowedUrls.some(url => currentUrl.includes(url));
@@ -78,7 +90,6 @@ window.onload = () => {
         // 开始观察文档的变化
         observer.observe(document.body, { childList: true, subtree: true });
     } else {
-        console.log('当前网址在允许的列表中，链接跳转不会被禁用。');
     }
   };
   // 禁用右键菜单

@@ -19,7 +19,15 @@
     "eastmoney.com",
     "kitco.com",
     "alipay.com",
-    "alipayobjects.com"
+    "alipayobjects.com",
+    "cnki.net",
+    "doi.org",
+    "*.elsevier.com",
+    "elsevier.com",
+    "mdpi.com",
+    "ngcc.cn",
+    "nwr.gov.cn",
+    "tianditu.gov.cn"
   ],
   "close": 0,
   "contextmenu-frame": true,
@@ -38,6 +46,10 @@
   "notes": {
     "*.amap.com": {
       "date": 1730270169145,
+      "origin": "options"
+    },
+    "*.elsevier.com": {
+      "date": 1730337492466,
       "origin": "options"
     },
     "*.esri.com": {
@@ -76,6 +88,10 @@
       "date": 1730180276391,
       "origin": "options"
     },
+    "cnki.net": {
+      "date": 1730336767629,
+      "origin": "options"
+    },
     "code.earthengine.google.com": {
       "date": 1730181882727,
       "origin": "options"
@@ -84,8 +100,16 @@
       "date": 1730181979394,
       "origin": "options"
     },
+    "doi.org": {
+      "date": 1730337369171,
+      "origin": "options"
+    },
     "eastmoney.com": {
       "date": 1730293506645,
+      "origin": "options"
+    },
+    "elsevier.com": {
+      "date": 1730337503217,
       "origin": "options"
     },
     "github.com": {
@@ -104,12 +128,28 @@
       "date": 1730294150081,
       "origin": "options"
     },
+    "mdpi.com": {
+      "date": 1730337661964,
+      "origin": "options"
+    },
+    "ngcc.cn": {
+      "date": 1730339361473,
+      "origin": "options"
+    },
+    "nwr.gov.cn": {
+      "date": 1730339389466,
+      "origin": "options"
+    },
     "reproducible-builds.org": {
       "date": 1730180198216,
       "origin": "prompt"
     },
     "strongvpn.com": {
       "date": 1730185062537,
+      "origin": "options"
+    },
+    "tianditu.gov.cn": {
+      "date": 1730339427586,
       "origin": "options"
     },
     "yuque.com": {
@@ -141,5 +181,5 @@
   "title": true,
   "wrong": 1,
   "managed.storage.overwrite.on.start": false,
-  "guid": "5f8adf9d-2460-4b8c-803d-bc8ea9502ec7"
+  "guid": "1edf8712-ad5f-47a5-9363-4ddef7f156ed"
 }
