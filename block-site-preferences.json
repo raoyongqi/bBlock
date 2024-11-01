@@ -27,7 +27,29 @@
     "mdpi.com",
     "ngcc.cn",
     "nwr.gov.cn",
-    "tianditu.gov.cn"
+    "tianditu.gov.cn",
+    "gee-community-catalog.org",
+    "wiley.com",
+    "*.wiley.com",
+    "osgeo.org",
+    "*.osgeo.org",
+    "*.readthedocs.io",
+    "mercurial-scm.org",
+    "openai.com",
+    "*.openai.com",
+    "*.chatgpt.com",
+    "cloudflare.com",
+    "live.com",
+    "*.live.com",
+    "mail.qq.com",
+    "*.mail.qq.com",
+    "*.weixin.qq.com",
+    "graph.qq.com",
+    "imgcache.qq.com",
+    "webextension.org",
+    "*.ptlogin2.qq.com",
+    "*.captcha.qq.com",
+    "captcha.gtimg.com"
   ],
   "close": 0,
   "contextmenu-frame": true,
@@ -38,14 +60,24 @@
   "css": "",
   "disable-actions-options": true,
   "disable-actions-page": true,
+  "guid": "850bfadc-e1d1-4ebe-89a8-ccfb6e581a0d",
   "initialBlock": true,
   "initialBlockCurrent": true,
+  "managed.storage.overwrite.on.start": false,
   "map": {},
   "message": "",
   "no-password-on-add": false,
   "notes": {
     "*.amap.com": {
       "date": 1730270169145,
+      "origin": "options"
+    },
+    "*.captcha.qq.com": {
+      "date": 1730428196598,
+      "origin": "options"
+    },
+    "*.chatgpt.com": {
+      "date": 1730423299894,
       "origin": "options"
     },
     "*.elsevier.com": {
@@ -60,6 +92,14 @@
       "date": 1730184001085,
       "origin": "options"
     },
+    "*.live.com": {
+      "date": 1730423659862,
+      "origin": "options"
+    },
+    "*.mail.qq.com": {
+      "date": 1730423959058,
+      "origin": "options"
+    },
     "*.mozilla.org": {
       "date": 1730265720368,
       "origin": "options"
@@ -68,8 +108,32 @@
       "date": 1730267721830,
       "origin": "options"
     },
+    "*.openai.com": {
+      "date": 1730423052783,
+      "origin": "options"
+    },
+    "*.osgeo.org": {
+      "date": 1730361360425,
+      "origin": "options"
+    },
+    "*.ptlogin2.qq.com": {
+      "date": 1730428092183,
+      "origin": "options"
+    },
+    "*.readthedocs.io": {
+      "date": 1730361553305,
+      "origin": "options"
+    },
     "*.strongvpn.com": {
       "date": 1730185074601,
+      "origin": "options"
+    },
+    "*.weixin.qq.com": {
+      "date": 1730424150284,
+      "origin": "options"
+    },
+    "*.wiley.com": {
+      "date": 1730361024961,
       "origin": "options"
     },
     "alipay.com": {
@@ -84,8 +148,16 @@
       "date": 1730184011098,
       "origin": "options"
     },
+    "captcha.gtimg.com": {
+      "date": 1730428234302,
+      "origin": "options"
+    },
     "chatgpt.com": {
       "date": 1730180276391,
+      "origin": "options"
+    },
+    "cloudflare.com": {
+      "date": 1730423567862,
       "origin": "options"
     },
     "cnki.net": {
@@ -112,12 +184,24 @@
       "date": 1730337503217,
       "origin": "options"
     },
+    "gee-community-catalog.org": {
+      "date": 1730359571820,
+      "origin": "options"
+    },
     "github.com": {
       "date": 1730181780908,
       "origin": "options"
     },
     "google.com": {
       "date": 1730184001085,
+      "origin": "options"
+    },
+    "graph.qq.com": {
+      "date": 1730424318028,
+      "origin": "options"
+    },
+    "imgcache.qq.com": {
+      "date": 1730424498012,
       "origin": "options"
     },
     "kimi.com": {
@@ -128,8 +212,20 @@
       "date": 1730294150081,
       "origin": "options"
     },
+    "live.com": {
+      "date": 1730423649742,
+      "origin": "options"
+    },
+    "mail.qq.com": {
+      "date": 1730423757045,
+      "origin": "options"
+    },
     "mdpi.com": {
       "date": 1730337661964,
+      "origin": "options"
+    },
+    "mercurial-scm.org": {
+      "date": 1730388548359,
       "origin": "options"
     },
     "ngcc.cn": {
@@ -138,6 +234,14 @@
     },
     "nwr.gov.cn": {
       "date": 1730339389466,
+      "origin": "options"
+    },
+    "openai.com": {
+      "date": 1730422684863,
+      "origin": "options"
+    },
+    "osgeo.org": {
+      "date": 1730361341856,
       "origin": "options"
     },
     "reproducible-builds.org": {
@@ -150,6 +254,14 @@
     },
     "tianditu.gov.cn": {
       "date": 1730339427586,
+      "origin": "options"
+    },
+    "webextension.org": {
+      "date": 1730425586866,
+      "origin": "options"
+    },
+    "wiley.com": {
+      "date": 1730361017449,
       "origin": "options"
     },
     "yuque.com": {
@@ -179,7 +291,5 @@
   "sha256": "",
   "timeout": 60,
   "title": true,
-  "wrong": 1,
-  "managed.storage.overwrite.on.start": false,
-  "guid": "1edf8712-ad5f-47a5-9363-4ddef7f156ed"
+  "wrong": 1
 }

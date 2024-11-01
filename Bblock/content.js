@@ -6,6 +6,7 @@ window.onload = () => {
         'google.com',
         'arcgis.com',
         'esri.com',
+        'openai.com',
         'oaiusercontent.com',
         'amap.com',
         'yuque.com',
@@ -24,7 +25,15 @@ window.onload = () => {
         "wiley.com",
         "osgeo.org",
         "readthedocs.io",
-        "file://"
+        "file://",
+        "mozilla.org",
+        "cloudflare.com",
+        "live.com",     	
+        "mail.qq.com",
+        "weixin.qq.com",
+        "graph.qq.com",
+        "imgcache.qq.com",
+        "webextension.org"
     ];
   
     const isAllowed = allowedUrls.some(url => currentUrl.includes(url));
