@@ -33,7 +33,16 @@ window.onload = () => {
         "weixin.qq.com",
         "graph.qq.com",
         "imgcache.qq.com",
-        "webextension.org"
+        "webextension.org",
+        "mirrors.ustc.edu.cn",
+        "support.microsoft.com",
+        "flickerfree.org",
+        "passmark.com",
+        "python.org",
+        "learn.microsoft.com",
+        "rustup.rs",
+        "zen-browser.app",
+        "qqmail.com"
     ];
   
     const isAllowed = allowedUrls.some(url => currentUrl.includes(url));

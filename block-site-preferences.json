@@ -49,7 +49,17 @@
     "webextension.org",
     "*.ptlogin2.qq.com",
     "*.captcha.qq.com",
-    "captcha.gtimg.com"
+    "captcha.gtimg.com",
+    "flickerfree.org",
+    "passmark.com",
+    "python.org",
+    "*.microsoft.com",
+    "rustup.rs",
+    "*.githubusercontent.com",
+    "floorp.dev",
+    "floorp.app",
+    "zen-browser.app",
+    "*.qqmail.com"
   ],
   "close": 0,
   "contextmenu-frame": true,
@@ -60,7 +70,7 @@
   "css": "",
   "disable-actions-options": true,
   "disable-actions-page": true,
-  "guid": "850bfadc-e1d1-4ebe-89a8-ccfb6e581a0d",
+  "guid": "d83110fb-9b20-490c-8969-a5315f6dee5a",
   "initialBlock": true,
   "initialBlockCurrent": true,
   "managed.storage.overwrite.on.start": false,
@@ -88,6 +98,10 @@
       "date": 1730184192774,
       "origin": "options"
     },
+    "*.githubusercontent.com": {
+      "date": 1730466051094,
+      "origin": "options"
+    },
     "*.google.com": {
       "date": 1730184001085,
       "origin": "options"
@@ -98,6 +112,10 @@
     },
     "*.mail.qq.com": {
       "date": 1730423959058,
+      "origin": "options"
+    },
+    "*.microsoft.com": {
+      "date": 1730449090236,
       "origin": "options"
     },
     "*.mozilla.org": {
@@ -118,6 +136,10 @@
     },
     "*.ptlogin2.qq.com": {
       "date": 1730428092183,
+      "origin": "options"
+    },
+    "*.qqmail.com": {
+      "date": 1730594839237,
       "origin": "options"
     },
     "*.readthedocs.io": {
@@ -184,6 +206,18 @@
       "date": 1730337503217,
       "origin": "options"
     },
+    "flickerfree.org": {
+      "date": 1730442969695,
+      "origin": "options"
+    },
+    "floorp.app": {
+      "date": 1730470435667,
+      "origin": "options"
+    },
+    "floorp.dev": {
+      "date": 1730470177538,
+      "origin": "options"
+    },
     "gee-community-catalog.org": {
       "date": 1730359571820,
       "origin": "options"
@@ -244,9 +278,21 @@
       "date": 1730361341856,
       "origin": "options"
     },
+    "passmark.com": {
+      "date": 1730443169895,
+      "origin": "options"
+    },
+    "python.org": {
+      "date": 1730447353029,
+      "origin": "options"
+    },
     "reproducible-builds.org": {
       "date": 1730180198216,
       "origin": "prompt"
+    },
+    "rustup.rs": {
+      "date": 1730450191955,
+      "origin": "options"
     },
     "strongvpn.com": {
       "date": 1730185062537,
@@ -266,6 +312,10 @@
     },
     "yuque.com": {
       "date": 1730274596531,
+      "origin": "options"
+    },
+    "zen-browser.app": {
+      "date": 1730534829374,
       "origin": "options"
     }
   },

@@ -1,5 +1,5 @@
 const URL_LISTS = [
-  'categoryporn.txt','blacklist.txt','search.txt'
+  'white_list.txt'
   ];
 
 async function fetchURLList() {
@@ -24,45 +24,75 @@ async function fetchURLList() {
           .filter(line => line && !line.startsWith('!') && !line.startsWith('['))
           .map(url => url.trim())
     );
+    const ids = [];
 
-    const normalizedData = data.map(url => {
-      if (url.includes('google')) {
-        return [`*://${url}/search*`]; // 返回特定格式
-      }
-      if (!url.startsWith('http://') && !url.startsWith('https://')) {
-
-        return [`*://${url}/*`, `*://*.${url}/*`]; // 返回其他格式
-      }
-      return url;
-    });
-    
-    const flatNormalizedData = [].concat(...normalizedData);
-
-    const rules = flatNormalizedData.map((url, index) => ({
-      id: index + 1,
-      priority: 1,
-      action: { type: 'redirect', redirect: { extensionPath: '/blocked.html' } },
+    ids.push(1);
+    const rule = {
+      id: 1,
+      action: {
+        type: 'redirect',
+        redirect: {
+          extensionPath: '/blocked.html' 
+        }
+      },
       condition: {
-        urlFilter: url,
-        resourceTypes: ["main_frame"]
-      }
-    }));
-
-    const googleSearchRule = {
-      id: 500, // 规则 ID
-      priority: 1,
-      action: { type: 'redirect', redirect: { extensionPath: '/blocked.html' } },
-      condition: {
-        urlFilter: '*://www.google.com/search*', // 屏蔽 google.com 的搜索子网址
-        resourceTypes: ['main_frame'] // 只针对主框架的请求
+        regexFilter: '^http',
+        resourceTypes: ['main_frame', 'sub_frame'],
+        isUrlFilterCaseSensitive: false
       }
     };
-    rules.push(googleSearchRule);
+    
+    // 使用 Set 来存储已占用的 ID
+  const usedIds = new Set(ids);
+
+  // 定义一个函数来找到下一个未被占用的 ID
+  const getNextAvailableId = () => {
+    let id = 1; // 从 1 开始
+    // 找到第一个未被占用的 ID
+    while (usedIds.has(id)) {
+      id += 1; // 找到下一个未占用的 ID
+    }
+    usedIds.add(id); // 将找到的 ID 添加到已使用的 ID 列表中
+    return id; // 返回找到的 ID
+  };
+
+  // 生成规则集合的 ID 列表
+  const rules = data.map((url) => {
+    const id = getNextAvailableId(); // 获取下一个可用的 ID
+
+    return {
+      id: id, // 使用生成的 ID
+      priority: 1,
+      action: { type: 'allow' },
+      condition: {
+        urlFilter: url,
+        resourceTypes: ['main_frame', 'sub_frame']
+      }
+    };
+  });
+
+  // 为 Google 搜索规则生成一个新的 ID
+  const googleSearchRuleId = getNextAvailableId(); // 获取下一个可用的 ID
+
+  // 使用动态生成的 ID 创建 googleSearchRule
+  const googleSearchRule = {
+    id: googleSearchRuleId, // 使用生成的 ID
+    priority: 1,
+    action: { type: 'redirect', redirect: { extensionPath: '/blocked.html' } },
+    condition: {
+      urlFilter: '*://www.google.com/search*',
+      resourceTypes: ['main_frame']
+    }
+  };
+
+  // 添加到规则列表
+  rules.push(googleSearchRule);
+
 
 
     chrome.declarativeNetRequest.updateDynamicRules({
       removeRuleIds: rules.map(rule => rule.id),
-      addRules: rules
+      addRules: [rule,...rules]
     });
 
     chrome.storage.local.set({ isActive: true });
@@ -71,7 +101,7 @@ async function fetchURLList() {
   }
 }
   // Update the list of URLs periodically
-  setInterval(fetchURLList, 6000); // Update every 1 hour
+  setInterval(fetchURLList, 600000); // Update every 1 hour
   fetchURLList();
   
   chrome.runtime.onInstalled.addListener(() => {
