@@ -1,6 +1,30 @@
 const URL_LISTS = [
-  'white_list.txt'
+  'whitelist.txt'
   ];
+  const convert = (h = '') => {
+    if (h.startsWith('R:') === false) {
+      if (h.indexOf('://') === -1 && h.indexOf('*') === -1) {
+        return `^https*:\\/\\/([^/]+\\.)*` + convert.escape(h);
+      }
+      else {
+        return '^' + h.split('*').map(convert.escape).join('.*');
+      }
+    }
+    if (h.startsWith('R:^')) {
+      return h.substr(2);
+    }
+    return '^.*' + h.substr(2);
+  };
+  convert.escape = str => {
+    const specials = [
+      // order matters for these
+      '-', '[', ']',
+      // order doesn't matter for any of these
+      '/', '{', '}', '(', ')', '*', '+', '?', '.', '\\', '^', '$', '|'
+    ];
+    const regex = RegExp('[' + specials.join('\\') + ']', 'g');
+    return str.replace(regex, '\\$&');
+  };
 
 async function fetchURLList() {
   try {
@@ -24,15 +48,25 @@ async function fetchURLList() {
           .filter(line => line && !line.startsWith('!') && !line.startsWith('['))
           .map(url => url.trim())
     );
-    const ids = [];
 
-    ids.push(1);
+
+    const usedIds = new Set();
+
+    const getNextAvailableId = () => {
+      let id = 1;
+      while (usedIds.has(id)) {
+        id += 1;
+      }
+      usedIds.add(id);
+      return id;
+    };
+
     const rule = {
-      id: 1,
+      id: getNextAvailableId(),
       action: {
         type: 'redirect',
         redirect: {
-          extensionPath: '/blocked.html' 
+          regexSubstitution: chrome.runtime.getURL('/blocked.html') + '?url=\\0'
         }
       },
       condition: {
@@ -41,58 +75,53 @@ async function fetchURLList() {
         isUrlFilterCaseSensitive: false
       }
     };
-    
-    // 使用 Set 来存储已占用的 ID
-  const usedIds = new Set(ids);
 
-  // 定义一个函数来找到下一个未被占用的 ID
-  const getNextAvailableId = () => {
-    let id = 1; // 从 1 开始
-    // 找到第一个未被占用的 ID
-    while (usedIds.has(id)) {
-      id += 1; // 找到下一个未占用的 ID
+    const currentRules = await chrome.declarativeNetRequest.getDynamicRules();
+    const ruleIds = currentRules.map(rule => rule.id);
+    await chrome.declarativeNetRequest.updateDynamicRules({
+      removeRuleIds: ruleIds // 移除所有现有规则
+    });
+
+    // Add the initial rule
+    chrome.declarativeNetRequest.updateDynamicRules({
+      addRules: [rule]
+    });
+
+    // Add rules one at a time
+    for (const url of data) {
+      const ruleId = getNextAvailableId();
+
+      const newRule = {
+        id: ruleId,
+        priority: 1,
+        action: { type: 'allow' },
+        condition: {
+          regexFilter: convert(url),
+          isUrlFilterCaseSensitive: false,
+          resourceTypes: ['main_frame', 'sub_frame']
+        }
+      };
+      console.log(typeof url)
+      console.log(url)
+
+      chrome.declarativeNetRequest.updateDynamicRules({
+        addRules: [newRule]
+      });
     }
-    usedIds.add(id); // 将找到的 ID 添加到已使用的 ID 列表中
-    return id; // 返回找到的 ID
-  };
 
-  // 生成规则集合的 ID 列表
-  const rules = data.map((url) => {
-    const id = getNextAvailableId(); // 获取下一个可用的 ID
-
-    return {
-      id: id, // 使用生成的 ID
+    // Add the Google Search rule with a unique ID
+    const googleSearchRule = {
+      id: getNextAvailableId(),
       priority: 1,
-      action: { type: 'allow' },
+      action: { type: 'redirect', redirect: { extensionPath: '/blocked.html' } },
       condition: {
-        urlFilter: url,
+        urlFilter: '*://www.google.com/search*',
         resourceTypes: ['main_frame', 'sub_frame']
       }
     };
-  });
-
-  // 为 Google 搜索规则生成一个新的 ID
-  const googleSearchRuleId = getNextAvailableId(); // 获取下一个可用的 ID
-
-  // 使用动态生成的 ID 创建 googleSearchRule
-  const googleSearchRule = {
-    id: googleSearchRuleId, // 使用生成的 ID
-    priority: 1,
-    action: { type: 'redirect', redirect: { extensionPath: '/blocked.html' } },
-    condition: {
-      urlFilter: '*://www.google.com/search*',
-      resourceTypes: ['main_frame']
-    }
-  };
-
-  // 添加到规则列表
-  rules.push(googleSearchRule);
-
-
 
     chrome.declarativeNetRequest.updateDynamicRules({
-      removeRuleIds: rules.map(rule => rule.id),
-      addRules: [rule,...rules]
+      addRules: [googleSearchRule]
     });
 
     chrome.storage.local.set({ isActive: true });
@@ -100,29 +129,24 @@ async function fetchURLList() {
     console.error('Failed to fetch URL list:', error);
   }
 }
-  // Update the list of URLs periodically
-  setInterval(fetchURLList, 600000); // Update every 1 hour
+
+// Initialize and listen to updates
+chrome.runtime.onInstalled.addListener(() => {
   fetchURLList();
-  
-  chrome.runtime.onInstalled.addListener(() => {
-    fetchURLList();
-  });
-  
-  chrome.storage.onChanged.addListener((changes, area) => {
-    if (area === 'local' && changes.isActive !== undefined) {
-      const isActive = changes.isActive.newValue;
-      if (!isActive) {
-        chrome.declarativeNetRequest.getDynamicRules((rules) => {
-          // 提取所有规则的 ID
-          const ruleIds = rules.map(rule => rule.id);
-          
-          // 移除所有规则
-          chrome.declarativeNetRequest.updateDynamicRules({
-            removeRuleIds: ruleIds // 移除所有规则
-          });
+});
+
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === 'local' && changes.isActive !== undefined) {
+    const isActive = changes.isActive.newValue;
+    if (!isActive) {
+      chrome.declarativeNetRequest.getDynamicRules((rules) => {
+        const ruleIds = rules.map(rule => rule.id);
+        chrome.declarativeNetRequest.updateDynamicRules({
+          removeRuleIds: ruleIds
         });
-      } else {
-        fetchURLList();
-      }
+      });
+    } else {
+      fetchURLList();
     }
-  });
+  }
+});
