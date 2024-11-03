@@ -8,7 +8,9 @@
       "webRequest",
       "webRequestBlocking",
       "<all_urls>",
-      "privacy"
+      "privacy",
+      "storage"
+
     ],
     "background": {
       "scripts": ["background.js"]

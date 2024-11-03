@@ -1,94 +1,103 @@
-const URL_LISTS = [
-  'whitelist.txt'
+const allowedUrls = [
+  "reproducible-builds.org",
+  "chatgpt.com",
+  "github.com",
+  "code.earthengine.google.com",
+  "diver.google.com",
+  "google.com",
+  "*.google.com",
+  "arcgis.com",
+  "*.esri.com",
+  "strongvpn.com",
+  "*.strongvpn.com",
+  "kimi.com",
+  "*.mozilla.org",
+  "*.oaiusercontent.com",
+  "*.amap.com",
+  "yuque.com",
+  "eastmoney.com",
+  "kitco.com",
+  "alipay.com",
+  "alipayobjects.com",
+  "cnki.net",
+  "doi.org",
+  "*.elsevier.com",
+  "elsevier.com",
+  "mdpi.com",
+  "ngcc.cn",
+  "nwr.gov.cn",
+  "tianditu.gov.cn",
+  "gee-community-catalog.org",
+  "wiley.com",
+  "*.wiley.com",
+  "osgeo.org",
+  "*.osgeo.org",
+  "*.readthedocs.io",
+  "mercurial-scm.org",
+  "openai.com",
+  "*.openai.com",
+  "*.chatgpt.com",
+  "cloudflare.com",
+  "live.com",
+  "*.live.com",
+  "mail.qq.com",
+  "*.mail.qq.com",
+  "*.weixin.qq.com",
+  "graph.qq.com",
+  "imgcache.qq.com",
+  "webextension.org",
+  "*.ptlogin2.qq.com",
+  "*.captcha.qq.com",
+  "captcha.gtimg.com",
+  "flickerfree.org",
+  "passmark.com",
+  "python.org",
+  "*.microsoft.com",
+  "rustup.rs",
+  "*.githubusercontent.com",
+  "floorp.dev",
+  "floorp.app",
+  "zen-browser.app",
+  "*.qqmail.com",
+  "*.oaistatic.com"
 ];
 
-const convert = (h = '') => {
-  if (!h.startsWith('R:')) {
-    if (!h.includes('://') && !h.includes('*')) {
-      return `^https*:\\/\\/([^/]+\\.)*` + convert.escape(h);
-    } else {
-      return '^' + h.split('*').map(convert.escape).join('.*');
-    }
+const blockedUrls = [
+  "*://www.google.com/search*"
+];
+
+const onBeforeRequest = (details) => {
+  const url = new URL(details.url);
+  const host = url.hostname;
+
+  // 检查是否在被阻止的 URL 列表中
+  const isBlocked = blockedUrls.some(pattern => {
+      const regex = new RegExp(pattern.replace(/\*/g, '.*'));
+      return regex.test(details.url);
+  });
+
+  if (isBlocked) {
+      return { cancel: true }; // 拦截请求
   }
-  if (h.startsWith('R:^')) {
-    return h.substr(2);
+
+  const isAllowed = allowedUrls.some(pattern => {
+      // 处理通配符
+      if (pattern.startsWith("*.") && host.endsWith(pattern.slice(2))) {
+          return true;
+      }
+      return host === pattern || host === 'www.' + pattern; // 修正这一行
+  });
+
+  if (!isAllowed) {
+      return { cancel: true }; // 拦截请求
   }
-  return '^.*' + h.substr(2);
+
+  return { cancel: false }; // 允许请求
 };
 
-convert.escape = str => {
-  const specials = [
-    '-', '[', ']', '/', '{', '}', '(', ')', '*', '+', '?', '.', '\\', '^', '$', '|'
-  ];
-  const regex = RegExp('[' + specials.join('\\') + ']', 'g');
-  return str.replace(regex, '\\$&');
-};
-
-async function fetchURLList() {
-  try {
-    const responses = await Promise.all(URL_LISTS.map(url =>
-      fetch(url).catch(err => {
-        console.error('Fetch error for URL:', url, err);
-        return { ok: false, url };
-      })
-    ));
-
-    const texts = await Promise.all(responses.map(response => {
-      if (!response.ok) {
-        console.error(`Network response was not ok for ${response.url}`);
-        return '';
-      }
-      return response.text();
-    }));
-
-    const data = texts.flatMap(text =>
-      text.split('\n')
-          .filter(line => line && !line.startsWith('!') && !line.startsWith('['))
-          .map(url => url.trim())
-    );
-
-    // Store URL patterns
-    await browser.storage.local.set({ urlPatterns: data });
-
-    // Initialize rules
-    initializeWebRequestRules(data);
-  } catch (error) {
-    console.error('Failed to fetch URL list:', error);
-  }
-}
-
-function initializeWebRequestRules(urlPatterns) {
-  browser.webRequest.onBeforeRequest.addListener(
-    (details) => {
-      const url = details.url;
-
-      // Check for Google Search URL
-      if (url.includes('www.google.com/search')) {
-        return { redirectUrl: browser.runtime.getURL('/blocked.html') }; // Redirect 
-      }
-
-      // Match against the patterns from storage
-      const isAllowed = urlPatterns.some(pattern => new RegExp(convert(pattern)).test(url));
-      return isAllowed ? { cancel: false } : { redirectUrl: browser.runtime.getURL('/blocked.html') }; 
-    },
-    { urls: ["<all_urls>"] }, // Apply to all URLs
-    ["blocking"]
-  );
-}
-
-// Initialize and listen to updates
-browser.runtime.onInstalled.addListener(() => {
-  fetchURLList();
-});
-
-browser.storage.onChanged.addListener((changes, area) => {
-  if (area === 'local' && changes.isActive !== undefined) {
-    const isActive = changes.isActive.newValue;
-    if (!isActive) {
-      // If inactive, remove listener or take necessary actions
-      browser.webRequest.onBeforeRequest.removeListener(initializeWebRequestRules);
-    } else {
-      fetchURLList();
-    }
-  }
-});
+// 监听所有请求
+browser.webRequest.onBeforeRequest.addListener(
+  onBeforeRequest,
+  { urls: ["<all_urls>"] },
+  ["blocking"]
+);
