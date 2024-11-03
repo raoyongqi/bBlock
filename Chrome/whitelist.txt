@@ -59,3 +59,5 @@ floorp.app
 zen-browser.app
 *.qqmail.com
 *.oaistatic.com
+aka.ms
+extensionworkshop.com
