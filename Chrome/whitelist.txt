@@ -55,9 +55,6 @@ python.org
 *.microsoft.com
 rustup.rs
 *.githubusercontent.com
-floorp.dev
-floorp.app
-zen-browser.app
 *.qqmail.com
 *.oaistatic.com
 aka.ms

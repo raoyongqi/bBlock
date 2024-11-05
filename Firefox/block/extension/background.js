@@ -19,6 +19,7 @@ const allowedUrls = [
   "alipay.com",
   "alipayobjects.com",
   "cnki.net",
+  "*.cnki.net",
   "doi.org",
   "*.elsevier.com",
   "elsevier.com",
@@ -54,12 +55,10 @@ const allowedUrls = [
   "*.microsoft.com",
   "rustup.rs",
   "*.githubusercontent.com",
-  "floorp.dev",
-  "floorp.app",
-  "zen-browser.app",
   "*.qqmail.com",
   "*.oaistatic.com"
 ];
+
 
 const blockedUrls = [
   "*://www.google.com/search*",

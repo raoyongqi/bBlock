@@ -19,6 +19,7 @@ const allowedUrls = [
     "alipay.com",
     "alipayobjects.com",
     "cnki.net",
+    "*.cnki.net",
     "doi.org",
     "*.elsevier.com",
     "elsevier.com",
@@ -54,9 +55,6 @@ const allowedUrls = [
     "*.microsoft.com",
     "rustup.rs",
     "*.githubusercontent.com",
-    "floorp.dev",
-    "floorp.app",
-    "zen-browser.app",
     "*.qqmail.com",
     "*.oaistatic.com"
   ];
@@ -70,9 +68,12 @@ const allowedUrls = [
   // 测试的 URL 列表
 const testUrls = [
     "https://www.mozilla.org/en-US/firefox/new/",
-    "https://firefox.com",
     "https://github.com/search?type=repositories&q=firefox",
-    "https://www.google.com/search"
+    "https://www.google.com/search",
+    "https://github.com/search?q=firefox&type=repositories",
+    "https://www.osgeo.org/projects/torchgeo/",
+    "https://www.cnki.net/",
+    "https://kns.cnki.net/kcms2/article"
   ];
   
   // 遍历 URL 并检查是否被阻止
