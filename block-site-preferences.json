@@ -12,7 +12,6 @@
     "strongvpn.com",
     "*.strongvpn.com",
     "kimi.com",
-    "*.mozilla.org",
     "*.oaiusercontent.com",
     "*.amap.com",
     "yuque.com",
@@ -59,7 +58,11 @@
     "floorp.dev",
     "floorp.app",
     "zen-browser.app",
-    "*.qqmail.com"
+    "*.qqmail.com",
+    "*.oaistatic.com",
+    "aka.ms",
+    "extensionworkshop.com",
+    "nodejs.org"
   ],
   "close": 0,
   "contextmenu-frame": true,
@@ -70,7 +73,7 @@
   "css": "",
   "disable-actions-options": true,
   "disable-actions-page": true,
-  "guid": "d83110fb-9b20-490c-8969-a5315f6dee5a",
+  "guid": "8b5224e9-5c57-448e-aa31-5d2956ebcde6",
   "initialBlock": true,
   "initialBlockCurrent": true,
   "managed.storage.overwrite.on.start": false,
@@ -118,8 +121,8 @@
       "date": 1730449090236,
       "origin": "options"
     },
-    "*.mozilla.org": {
-      "date": 1730265720368,
+    "*.oaistatic.com": {
+      "date": 1730598504549,
       "origin": "options"
     },
     "*.oaiusercontent.com": {
@@ -156,6 +159,10 @@
     },
     "*.wiley.com": {
       "date": 1730361024961,
+      "origin": "options"
+    },
+    "aka.ms": {
+      "date": 1730630084630,
       "origin": "options"
     },
     "alipay.com": {
@@ -204,6 +211,10 @@
     },
     "elsevier.com": {
       "date": 1730337503217,
+      "origin": "options"
+    },
+    "extensionworkshop.com": {
+      "date": 1730634316062,
       "origin": "options"
     },
     "flickerfree.org": {
@@ -264,6 +275,10 @@
     },
     "ngcc.cn": {
       "date": 1730339361473,
+      "origin": "options"
+    },
+    "nodejs.org": {
+      "date": 1730769215864,
       "origin": "options"
     },
     "nwr.gov.cn": {

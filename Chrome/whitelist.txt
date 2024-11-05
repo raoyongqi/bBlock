@@ -10,7 +10,8 @@ arcgis.com
 strongvpn.com
 *.strongvpn.com
 kimi.com
-*.mozilla.org
+nodejs.org
+*.nodejs.org
 *.oaiusercontent.com
 *.amap.com
 yuque.com

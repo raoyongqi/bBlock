@@ -11,7 +11,6 @@ const allowedUrls = [
   "strongvpn.com",
   "*.strongvpn.com",
   "kimi.com",
-  "*.mozilla.org",
   "*.oaiusercontent.com",
   "*.amap.com",
   "yuque.com",

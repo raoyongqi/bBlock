@@ -26,6 +26,18 @@ const URL_LISTS = [
     return str.replace(regex, '\\$&');
   };
 
+// 初始化已使用的 ID 集合
+const usedIds = new Set();
+
+const getNextAvailableId = () => {
+  let id = 1;
+  while (usedIds.has(id)) {
+    id += 1;
+  }
+  usedIds.add(id);
+  return id;
+};
+
 async function fetchURLList() {
   try {
     const responses = await Promise.all(URL_LISTS.map(url => 
@@ -49,19 +61,17 @@ async function fetchURLList() {
           .map(url => url.trim())
     );
 
+    const currentRules = await chrome.declarativeNetRequest.getDynamicRules();
+    const ruleIds = currentRules.map(rule => rule.id);
 
-    const usedIds = new Set();
+    // 清除现有规则并更新已使用的 ID 集合
+    await chrome.declarativeNetRequest.updateDynamicRules({
+      removeRuleIds: ruleIds
+    });
+    ruleIds.forEach(id => usedIds.delete(id));
 
-    const getNextAvailableId = () => {
-      let id = 1;
-      while (usedIds.has(id)) {
-        id += 1;
-      }
-      usedIds.add(id);
-      return id;
-    };
-
-    const rule = {
+    // 初始重定向规则
+    const initialRule = {
       id: getNextAvailableId(),
       action: {
         type: 'redirect',
@@ -76,23 +86,14 @@ async function fetchURLList() {
       }
     };
 
-    const currentRules = await chrome.declarativeNetRequest.getDynamicRules();
-    const ruleIds = currentRules.map(rule => rule.id);
     await chrome.declarativeNetRequest.updateDynamicRules({
-      removeRuleIds: ruleIds // 移除所有现有规则
+      addRules: [initialRule]
     });
 
-    // Add the initial rule
-    chrome.declarativeNetRequest.updateDynamicRules({
-      addRules: [rule]
-    });
-
-    // Add rules one at a time
+    // 逐一添加数据中的规则
     for (const url of data) {
-      const ruleId = getNextAvailableId();
-
       const newRule = {
-        id: ruleId,
+        id: getNextAvailableId(),
         priority: 1,
         action: { type: 'allow' },
         condition: {
@@ -101,27 +102,38 @@ async function fetchURLList() {
           resourceTypes: ['main_frame', 'sub_frame']
         }
       };
-      console.log(typeof url)
-      console.log(url)
-
-      chrome.declarativeNetRequest.updateDynamicRules({
+      await chrome.declarativeNetRequest.updateDynamicRules({
         addRules: [newRule]
       });
     }
 
-    // Add the Google Search rule with a unique ID
+    // 添加 Google Search 规则
     const googleSearchRule = {
       id: getNextAvailableId(),
       priority: 1,
       action: { type: 'redirect', redirect: { extensionPath: '/blocked.html' } },
       condition: {
         urlFilter: '*://www.google.com/search*',
-        resourceTypes: ['main_frame', 'sub_frame']
+        resourceTypes: ['main_frame']
       }
     };
-
-    chrome.declarativeNetRequest.updateDynamicRules({
+    await chrome.declarativeNetRequest.updateDynamicRules({
       addRules: [googleSearchRule]
+    });
+
+    // 添加 Firefox 下载规则
+    const firefoxDownloadRule = {
+      id: getNextAvailableId(),
+      priority: 1,
+      action: { type: 'redirect', redirect: { extensionPath: '/blocked.html' } },
+      condition: {
+        regexFilter: '.*firefox.*',
+        resourceTypes: ['main_frame', 'sub_frame'],
+        isUrlFilterCaseSensitive: false
+      }
+    };
+    await chrome.declarativeNetRequest.updateDynamicRules({
+      addRules: [firefoxDownloadRule]
     });
 
     chrome.storage.local.set({ isActive: true });
@@ -129,6 +141,9 @@ async function fetchURLList() {
     console.error('Failed to fetch URL list:', error);
   }
 }
+
+  // Update the list of URLs periodically
+setInterval(fetchURLList, 3600000); // Update every 1 hour
 
 // Initialize and listen to updates
 chrome.runtime.onInstalled.addListener(() => {
