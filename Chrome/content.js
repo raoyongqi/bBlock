@@ -43,7 +43,8 @@ window.onload = () => {
         "rustup.rs",
         "zen-browser.app",
         "qqmail.com",
-        "extensionworkshop.com"
+        "extensionworkshop.com",
+        "nodejs.org"
     ];
   
     const isAllowed = allowedUrls.some(url => currentUrl.includes(url));

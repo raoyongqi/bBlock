@@ -62,7 +62,9 @@ const allowedUrls = [
 ];
 
 const blockedUrls = [
-  "*://www.google.com/search*"
+  "*://www.google.com/search*",
+  ".*firefox.*",
+  ".*firefox" // 用于阻止包含“firefox”的 URL 的正则表达式
 ];
 
 const onBeforeRequest = (details) => {
@@ -71,24 +73,27 @@ const onBeforeRequest = (details) => {
 
   // 检查是否在被阻止的 URL 列表中
   const isBlocked = blockedUrls.some(pattern => {
-      const regex = new RegExp(pattern.replace(/\*/g, '.*'));
-      return regex.test(details.url);
+    const regex = new RegExp(pattern.replace(/\*/g, '.*'));
+    return regex.test(details.url); // 检查整个 URL
   });
 
   if (isBlocked) {
-      return { cancel: true }; // 拦截请求
+    console.log(`Blocked URL: ${details.url}`);
+    return { cancel: true }; // 拦截请求
   }
 
+  // 检查是否在允许的 URL 列表中
   const isAllowed = allowedUrls.some(pattern => {
-      // 处理通配符
-      if (pattern.startsWith("*.") && host.endsWith(pattern.slice(2))) {
-          return true;
-      }
-      return host === pattern || host === 'www.' + pattern; // 修正这一行
+    // 处理通配符
+    if (pattern.startsWith("*.") && host.endsWith(pattern.slice(2))) {
+      return true;
+    }
+    return host === pattern || host === 'www.' + pattern; // 检查主机名
   });
 
   if (!isAllowed) {
-      return { cancel: true }; // 拦截请求
+    console.log(`Blocked URL: ${details.url}`);
+    return { cancel: true }; // 拦截请求
   }
 
   return { cancel: false }; // 允许请求

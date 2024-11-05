@@ -127,7 +127,7 @@ async function fetchURLList() {
       priority: 1,
       action: { type: 'redirect', redirect: { extensionPath: '/blocked.html' } },
       condition: {
-        regexFilter: '.*firefox.*',
+        regexFilter: ".*firefox",
         resourceTypes: ['main_frame', 'sub_frame'],
         isUrlFilterCaseSensitive: false
       }
@@ -135,7 +135,19 @@ async function fetchURLList() {
     await chrome.declarativeNetRequest.updateDynamicRules({
       addRules: [firefoxDownloadRule]
     });
-
+    const firefoxDownloadRule2 = {
+      id: getNextAvailableId(),
+      priority: 1,
+      action: { type: 'redirect', redirect: { extensionPath: '/blocked.html' } },
+      condition: {
+        regexFilter: ".*firefox.*",
+        resourceTypes: ['main_frame', 'sub_frame'],
+        isUrlFilterCaseSensitive: false
+      }
+    };
+    await chrome.declarativeNetRequest.updateDynamicRules({
+      addRules: [firefoxDownloadRule2]
+    });
     chrome.storage.local.set({ isActive: true });
   } catch (error) {
     console.error('Failed to fetch URL list:', error);
