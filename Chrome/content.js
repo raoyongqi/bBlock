@@ -11,7 +11,6 @@ window.onload = () => {
         'amap.com',
         'yuque.com',
         'kitco.com',
-        'eastmoney.com',
         'alipay.com',
         'alipayobjects.com',
         'cnki.net',
@@ -44,7 +43,9 @@ window.onload = () => {
         "zen-browser.app",
         "qqmail.com",
         "extensionworkshop.com",
-        "nodejs.org"
+        "nodejs.org",
+
+
     ];
   
     const isAllowed = allowedUrls.some(url => currentUrl.includes(url));

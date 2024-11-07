@@ -21,6 +21,7 @@ const allowedUrls = [
   "cnki.net",
   "*.cnki.net",
   "doi.org",
+  "zqhd.18.cn",
   "*.elsevier.com",
   "elsevier.com",
   "mdpi.com",
