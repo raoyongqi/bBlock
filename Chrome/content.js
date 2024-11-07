@@ -10,7 +10,6 @@ window.onload = () => {
         'oaiusercontent.com',
         'amap.com',
         'yuque.com',
-        'kitco.com',
         'alipay.com',
         'alipayobjects.com',
         'cnki.net',
