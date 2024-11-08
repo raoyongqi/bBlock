@@ -7,7 +7,9 @@
       "declarativeNetRequestWithHostAccess",
       "storage",
       "activeTab",
-      "webRequest"
+      "webRequest",
+          "tabs",
+          "background"
     ],
       "incognito": "split",
     "content_scripts": [

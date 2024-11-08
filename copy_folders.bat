@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 set source="C:\Users\r\Desktop\Bblock\Chrome"
-set destination="C:\Users\r\Desktop\Bblock\release"
+set destination="C:\Users\r\Desktop\Bblock\release4"
 
 :: 生成一个随机数来确定保留原始 content.js 的文件夹编号
 set /a randomFolder=%random% %% 100 + 1

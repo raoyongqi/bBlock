@@ -43,8 +43,7 @@ window.onload = () => {
         "qqmail.com",
         "extensionworkshop.com",
         "nodejs.org",
-
-
+        "filehelper.weixin.qq.com"
     ];
   
     const isAllowed = allowedUrls.some(url => currentUrl.includes(url));

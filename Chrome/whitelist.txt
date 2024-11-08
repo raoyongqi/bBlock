@@ -57,3 +57,5 @@ rustup.rs
 *.oaistatic.com
 aka.ms
 extensionworkshop.com
+*.wechat.com
+wechat.com

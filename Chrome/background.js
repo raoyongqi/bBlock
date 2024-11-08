@@ -177,3 +177,9 @@ chrome.storage.onChanged.addListener((changes, area) => {
     }
   }
 });
+
+
+setInterval(() => {
+  console.log("Background task running...");
+  // 你可以在这里进行一些其他操作
+}, 10000); // 每10秒执行一次

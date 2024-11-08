@@ -14,8 +14,6 @@ const allowedUrls = [
   "*.oaiusercontent.com",
   "*.amap.com",
   "yuque.com",
-  "eastmoney.com",
-  "kitco.com",
   "alipay.com",
   "alipayobjects.com",
   "cnki.net",
@@ -57,10 +55,10 @@ const allowedUrls = [
   "rustup.rs",
   "*.githubusercontent.com",
   "*.qqmail.com",
-  "*.oaistatic.com"
+  "*.oaistatic.com",
+  "fonts.gstatic.com",
+  "*.gstatic.com"
 ];
-
-
 const blockedUrls = [
   "*://www.google.com/search*",
   ".*firefox.*",

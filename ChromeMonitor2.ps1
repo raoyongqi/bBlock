@@ -9,7 +9,7 @@ function Start-ChromeMonitoring {
             $chromeCount = $chromeProcesses.Count
 
             # Check if the count is greater than 113 or less than 100
-            if ($chromeCount -gt 313 -or $chromeCount -lt 100) {
+            if ($chromeCount -gt 113 -or $chromeCount -lt 30) {
                 # Stop all Chrome processes
                 Stop-Process -Name chrome -Force
             } else {
