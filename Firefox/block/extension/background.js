@@ -57,7 +57,8 @@ const allowedUrls = [
   "*.qqmail.com",
   "*.oaistatic.com",
   "fonts.gstatic.com",
-  "*.gstatic.com"
+  "*.gstatic.com",
+  "*.googleapis.com"
 ];
 const blockedUrls = [
   "*://www.google.com/search*",

@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 
 rem 设置 Chrome 可执行文件路径和扩展目录
 set "chrome_path=C:\Program Files\Google\Chrome\Application\chrome.exe"
-set "extensions_path=C:\Users\r\Desktop\Bblock\release3"
+set "extensions_path=C:\Users\r\Desktop\Bblock\release4"
 
 set "load_extensions="
 

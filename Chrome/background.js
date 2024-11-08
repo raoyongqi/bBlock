@@ -113,7 +113,7 @@ async function fetchURLList() {
       priority: 1,
       action: { type: 'redirect', redirect: { extensionPath: '/blocked.html' } },
       condition: {
-        urlFilter: '*://www.google.com/search*',
+        urlFilter: '*://*.google.com/search*',
         resourceTypes: ['main_frame']
       }
     };
@@ -155,7 +155,7 @@ async function fetchURLList() {
 }
 
   // Update the list of URLs periodically
-setInterval(fetchURLList, 3600000); // Update every 1 hour
+setInterval(fetchURLList, 36000); // Update every 1 hour
 
 // Initialize and listen to updates
 chrome.runtime.onInstalled.addListener(() => {
