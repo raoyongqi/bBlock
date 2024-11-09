@@ -7,6 +7,7 @@ const allowedUrls = [
   "google.com",
   "*.google.com",
   "arcgis.com",
+  "github.githubassets.com",
   "*.esri.com",
   "strongvpn.com",
   "*.strongvpn.com",
@@ -59,6 +60,8 @@ const allowedUrls = [
   "fonts.gstatic.com",
   "*.gstatic.com",
   "*.googleapis.com",
+  "*.cloudflare.com",
+  "*.nasa.gov"
 
 ];
 const blockedUrls = [
