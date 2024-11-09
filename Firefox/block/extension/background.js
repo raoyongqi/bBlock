@@ -3,7 +3,7 @@ const allowedUrls = [
   "chatgpt.com",
   "github.com",
   "code.earthengine.google.com",
-  "diver.google.com",
+  "drive.google.com",
   "google.com",
   "*.google.com",
   "arcgis.com",
@@ -58,7 +58,8 @@ const allowedUrls = [
   "*.oaistatic.com",
   "fonts.gstatic.com",
   "*.gstatic.com",
-  "*.googleapis.com"
+  "*.googleapis.com",
+
 ];
 const blockedUrls = [
   "*://www.google.com/search*",
