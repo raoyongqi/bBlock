@@ -61,7 +61,10 @@ const allowedUrls = [
   "*.gstatic.com",
   "*.googleapis.com",
   "*.cloudflare.com",
-  "*.nasa.gov"
+  "*.nasa.gov",
+  "git-scm.com",
+  "localhost", // 添加 localhost
+  "127.0.0.1" // 添加 127.0.0.1
 
 ];
 const blockedUrls = [
