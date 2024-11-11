@@ -64,8 +64,9 @@ const allowedUrls = [
   "*.nasa.gov",
   "git-scm.com",
   "localhost", // 添加 localhost
-  "127.0.0.1" // 添加 127.0.0.1
-
+  "127.0.0.1", // 添加 127.0.0.1,
+  "wps.com",
+  "meeting.qq.com"
 ];
 const blockedUrls = [
   "*://www.google.com/search*",
