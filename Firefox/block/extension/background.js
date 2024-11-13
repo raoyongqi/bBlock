@@ -66,8 +66,17 @@ const allowedUrls = [
   "localhost", // 添加 localhost
   "127.0.0.1", // 添加 127.0.0.1,
   "wps.com",
-  "meeting.qq.com"
-];
+  "meeting.qq.com",
+  "*.aliyun.com",
+  "*.alicdn.com",
+  "*.github.io",
+  "*.usgs.gov",
+  "researchgate.net",
+  "sciencedirect.com",
+  "msftconnecttest.com",
+  "wandoujia.com",
+    "10.10.0.166"
+]; 
 const blockedUrls = [
   "*://www.google.com/search*",
   ".*firefox.*",
