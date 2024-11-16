@@ -70,12 +70,14 @@ const allowedUrls = [
   "*.aliyun.com",
   "*.alicdn.com",
   "*.github.io",
+  "apktool.org",
   "*.usgs.gov",
   "researchgate.net",
   "sciencedirect.com",
   "msftconnecttest.com",
   "wandoujia.com",
-    "10.10.0.166"
+    "10.10.0.166",
+    "*.alipay.com"
 ]; 
 const blockedUrls = [
   "*://www.google.com/search*",
