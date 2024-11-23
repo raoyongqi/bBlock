@@ -92,7 +92,18 @@ const allowedUrls = [
     "ojs.aaai.org",
     "*.office.net",
     "*.readthedocs.io",
-
+    "*.github.com",
+  "*.aliyuncs.com",
+      ".wandoujia.com",
+      "*.alibabachengdun.com",
+      "*.sinaimg.cn",
+    " fourier.taobao.com",
+    "*.9game.cn",
+    "*.mmstat.com",
+    "*.ucdl.pp.uc.cn",
+    "*.25pp.com",
+    "hm.baidu.com",
+    "*.s3.amazonaws.com"
 ]; 
 const blockedUrls = [
   "*://www.google.com/search*",
