@@ -103,6 +103,8 @@ const allowedUrls = [
     "*.ucdl.pp.uc.cn",
     "*.25pp.com",
     "hm.baidu.com",
+    "detectportal.firefox.com",
+    "*.lzu.edu.cn",
     "*.s3.amazonaws.com"
 ]; 
 const blockedUrls = [
