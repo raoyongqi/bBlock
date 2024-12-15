@@ -56,6 +56,10 @@ const allowedUrls = [
   "webextension.org",
   "*.ptlogin2.qq.com",
   "*.captcha.qq.com",
+  "res.wx.qq.com",
+  "aegis.qq.com",
+  "*.cdn-go.cn",
+   "*.aegis.qq.com",
   "captcha.gtimg.com",
   "flickerfree.org",
   "passmark.com",
@@ -83,6 +87,7 @@ const allowedUrls = [
   "researchgate.net",
   "sciencedirect.com",
   "msftconnecttest.com",
+  "redux.js.org",
   "wandoujia.com",
     "10.10.0.166",
     "*.alipay.com",
@@ -126,8 +131,17 @@ const allowedUrls = [
     "googletagmanager.com",
     "*.googletagmanager.com",
     "unpkg.com",
-    "*.googlesyndication.com"
-
+    "*.googlesyndication.com",
+    "gitlab.com",
+    "*.npmjs.com",
+    "lib.baomitu.com",
+    "fonts.loli.net",
+   "www.npmjs.com",
+   "electronjs.org",
+   "gdal.org",
+   "numfocus.org",
+   "studiostaticassetsprod.azureedge.net",
+   "vite.dev",
 ]; 
 const blockedUrls = [
   "*://www.google.com/search*",
