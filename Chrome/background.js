@@ -1,6 +1,8 @@
 const URL_LISTS = [
   'whitelist.txt'
   ];
+
+  
   const convert = (h = '') => {
     if (h.startsWith('R:') === false) {
       if (h.indexOf('://') === -1 && h.indexOf('*') === -1) {
@@ -89,7 +91,7 @@ async function fetchURLList() {
     await chrome.declarativeNetRequest.updateDynamicRules({
       addRules: [initialRule]
     });
-
+//鹌鹑蛋
     // 逐一添加数据中的规则
     for (const url of data) {
       const newRule = {

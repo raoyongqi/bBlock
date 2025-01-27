@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "URL Blocker",
+  "version": "1.0",
+  "description": "Blocks or allows specific URLs based on patterns.",
+  "permissions": [ "declarativeNetRequest",
+  "declarativeNetRequestWithHostAccess",
+  "storage",
+  "activeTab",
+  "webRequest",
+      "tabs",
+  "background"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}
