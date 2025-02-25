@@ -8,18 +8,23 @@ const allowedUrls = [
   "*.google.de",
   "ojs.unikom.ac.id",
   "jil.go.jp",
+  "*.iopscience.com",
   "pascal-francis.inist.fr",
   "aiem.es",
   "tvst.arvojournals.org",
   "nph.onlinelibrary.wiley.com",
   "webextension.org",
   "lifescied.org",
+  "msys2.org",
+  "llvm.org",
+
   "chatgpt.com",
   "www5.informatik.uni-erlangen.de",
   "publishup.uni-potsdam.de",
   "staff.icar.cnr.it",
   "ahajournals.org",
   "*.wandoujia.com",
+  "asmedc.silverchair-cdn.com",
   "hal.science",
   "dbpia.co.kr",
   "repository.universitasbumigora.ac.id",
@@ -1318,7 +1323,6 @@ const allowedUrls = [
   "*.cloudflareinsights.com",
   "scholarworks.umass.edu"
 ];
-
 
 const blockedUrls = [
   "*://www.google.com/search*",
