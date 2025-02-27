@@ -1,0 +1,52 @@
+CROSS_COMPILE=1
+GNU_CC=1
+MOZ_TSAN=1
+HOST_CC="clang-cl"
+HOST_CXX="clang-cl"
+#use vs2022clang
+#use Visual Studio 2022 Developer Command Prompt v17.11.5
+ #CC="x86_64-w64-mingw32-clang"
+ #CXX="x86_64-w64-mingw32-clang++"
+ CXXFLAGS="-fms-extensions -std=c++11"
+CFLAGS="-std=c++11"
+
+
+# # 这里修改为 Windows 环境中的 clang 路径
+clang_path="C:/msys64/clang64"
+ BINDGEN_CFLAGS="-I$clang_path/include -I$clang_path/include/c++/v1"
+
+# Windows 环境下的构建选项
+# ac_add_options --target=x86_64-w64-mingw32
+# ac_add_options --with-toolchain-prefix=x86_64-w64-mingw32-
+ac_add_options --target=x86_64-w64-mingw32
+# ac_add_options --enable-bootstrap
+ac_add_options --with-libclang-path=C:/libclang/libclang_x86-64
+# 禁用一些在 Windows 上不需要的功能
+ac_add_options --disable-bits-download
+ac_add_options --disable-maintenance-service
+ac_add_options --disable-default-browser-agent
+ac_add_options --disable-update-agent
+ac_add_options --disable-notification-server
+
+# 禁用 WebRTC（在 Windows 上有时存在兼容性问题）
+ac_add_options --disable-webrtc
+
+# 如果你需要使用 WASI，可以在这里配置它，但通常 Windows 不需要
+ac_add_options --without-wasm-sandboxed-libraries
+
+# 启用调试信息（可选，根据需求）
+#ac_add_options --enable-debug
+#ac_add_options --enable-debug-js-modules
+#ac_add_options --disable-optimize
+#export MOZ_COPY_PDBS=1
+ac_add_options --enable-strip
+
+# 如果需要 NSS 的更新功能，可以启用这个选项
+#ac_add_options --enable-nss-mar
+
+# Tor Browser 特定配置
+mk_add_options MOZ_APP_DISPLAYNAME="Tor Browser"
+ac_add_options --with-base-browser-version=devbuild
+ac_add_options --with-relative-data-dir=TorBrowser/Data/Browser
+# 你可以选择根据需要修改路径
+# ac_add_options --with-relative-data-dir=../Data
